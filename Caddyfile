@@ -1,0 +1,3 @@
+git.dayl.in {
+	reverse_proxy gitea:3000
+}
