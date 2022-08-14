@@ -1,6 +1,8 @@
+soft/*
 gitea/*
 !gitea/gitea/
 
 gitea/gitea/*
 !gitea/gitea/templates/
 !gitea/gitea/public/
+

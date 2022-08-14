@@ -39,6 +39,15 @@ services:
       - caddy_data:/data
       - caddy_config:/config
 
+  soft-serve:
+    image: charmcli/soft-serve:latest
+    restart: unless-stopped
+    container_name: soft-serve
+    volumes:
+      - ./soft:/soft-serve
+    ports:
+      - 23231:23231
+
 volumes:
   caddy_data:
     external: true
