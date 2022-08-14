@@ -2,6 +2,5 @@ gitea/*
 !gitea/gitea/
 
 gitea/gitea/*
-!gitea/gitea/conf/
 !gitea/gitea/templates/
 !gitea/gitea/public/
