@@ -1,21 +1,29 @@
 #!/usr/bin/env python3
 
+import json
 from pathlib import Path
 import shutil
 
-GITEA_REPOS = Path(__file__).parent / "gitea/git/repositories/daylin"
-SOFT_REPOS = Path(__file__).parent / "soft/repos"
 
-allowed = ["dotfiles", "git-server"]
-soft_serve_only = ["config"]
+def get_config():
+    with (Path(__file__).parent / "soft-serve.config.json").open("r") as f:
+        return json.load(f)
+
+
+def get_name(config, repo):
+    name = repo.name.replace(".git", "")
+    dest = Path(config["paths"]["dest"]) / name
+    return name, dest
 
 
 def main():
 
-    for repo in GITEA_REPOS.iterdir():
-        name = repo.name.replace(".git", "")
-        dest = SOFT_REPOS / name
-        if name not in [*allowed, *soft_serve_only]:
+    config = get_config()
+
+    for repo in Path(config["paths"]["src"]).iterdir():
+        name, dest = get_name(config, repo)
+
+        if name not in config["repos"]["src"]:
             continue
 
         print(f"{repo} >> {dest}")
@@ -24,10 +32,10 @@ def main():
             shutil.rmtree(dest)
         shutil.copytree(repo, dest)
 
-    for repo in SOFT_REPOS.iterdir():
-        name = repo.name.replace(".git", "")
-        dest = SOFT_REPOS / name
-        if name not in [*allowed, *soft_serve_only]:
+    for repo in Path(config["paths"]["dest"]).iterdir():
+        name, dest = get_name(config, repo)
+
+        if name not in [*config["repos"]["src"], *config["repos"]["dest"]]:
             print(f"pruning {name}")
             shutil.rmtree(repo)
 

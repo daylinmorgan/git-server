@@ -1,0 +1,10 @@
+{
+  "paths": {
+    "src": "./gitea/git/repositories/daylin",
+    "dest": "./soft/repos"
+  },
+  "repos": {
+    "src": ["dotfiles", "git-server"],
+    "dest": ["config"]
+  }
+}
