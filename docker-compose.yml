@@ -44,7 +44,7 @@ services:
     restart: unless-stopped
     container_name: soft-serve
     volumes:
-      - ./soft:/soft-serve
+      - ./soft/data:/soft-serve
     ports:
       - 23231:23231
 

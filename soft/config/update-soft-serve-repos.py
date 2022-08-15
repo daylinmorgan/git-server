@@ -16,11 +16,15 @@ def get_name(config, repo):
     return name, dest
 
 
+def get_repo_path(config, repos):
+    return Path(__file__).parent.parent.parent / config["paths"][repos]
+
+
 def main():
 
     config = get_config()
 
-    for repo in Path(config["paths"]["src"]).iterdir():
+    for repo in get_repo_path(config, "src").iterdir():
         name, dest = get_name(config, repo)
 
         if name not in config["repos"]["src"]:
@@ -32,7 +36,7 @@ def main():
             shutil.rmtree(dest)
         shutil.copytree(repo, dest)
 
-    for repo in Path(config["paths"]["dest"]).iterdir():
+    for repo in get_repo_path(config, "dest").iterdir():
         name, dest = get_name(config, repo)
 
         if name not in [*config["repos"]["src"], *config["repos"]["dest"]]:
