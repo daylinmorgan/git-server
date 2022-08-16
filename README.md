@@ -17,7 +17,7 @@ add the following lines to `sudo crontab`.
 
 ```
 # update repos
-* */4 * * * make -C /home/daylin/git soft-repos
+0 * * * * make -C /home/daylin/git soft-repos
 # update container so home page is semi-accurate
 0 2 * * * make -C /home/daylin/git update-soft-serve
 ```
