@@ -4,7 +4,14 @@
     "dest": "./soft/data/repos"
   },
   "repos": {
-    "src": ["dotfiles", "git-server", "monolisa-nerdfont-patch"],
-    "dest": ["config"]
+    "src": [
+      "dotfiles",
+      "git-server",
+      "monolisa-nerdfont-patch",
+      "yartsu"
+    ],
+    "dest": [
+      "config"
+    ]
   }
 }
