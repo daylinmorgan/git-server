@@ -40,7 +40,7 @@ services:
       - caddy_config:/config
 
   soft-serve:
-    image: charmcli/soft-serve:latest
+    image: charmcli/soft-serve:v0.4.0
     restart: unless-stopped
     container_name: soft-serve
     volumes:
