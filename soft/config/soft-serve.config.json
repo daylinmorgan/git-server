@@ -8,7 +8,8 @@
       "dotfiles",
       "git-server",
       "monolisa-nerdfont-patch",
-      "yartsu"
+      "yartsu",
+      "task.mk"
     ],
     "dest": [
       "config"
