@@ -38,6 +38,9 @@ ROOT_URL   = https://git.dayl.in/
 DISABLE_REGISTRATION = true
 NO_REPLY_ADDRESS     = noreply.git.dayl.in
 
+[service.explore]
+DISABLE_USERS_PAGE = true
+
 [ui]
 DEFAULT_THEME = arc-green
 THEMES        = arc-green
