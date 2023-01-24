@@ -6,7 +6,7 @@ networks:
 
 services:
   gitea:
-    image: gitea/gitea:1.17.2
+    image: gitea/gitea:1.18.3
     container_name: gitea
     environment:
       - USER_UID=1001
@@ -40,7 +40,7 @@ services:
       - caddy_config:/config
 
   soft-serve:
-    image: charmcli/soft-serve:v0.4.0
+    image: charmcli/soft-serve:v0.4.4
     restart: unless-stopped
     container_name: soft-serve
     volumes:
