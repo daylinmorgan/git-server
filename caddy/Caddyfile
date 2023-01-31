@@ -1,3 +1,7 @@
 git.dayl.in {
-	reverse_proxy gitea:3000
+	reverse_proxy 127.0.0.1:3000
+}
+
+resunim.dayl.in {
+	reverse_proxy 127.0.0.1:8080
 }
