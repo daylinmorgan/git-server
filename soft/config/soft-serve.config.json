@@ -9,7 +9,8 @@
       "git-server",
       "monolisa-nerdfont-patch",
       "yartsu",
-      "task.mk"
+      "task.mk",
+      "viv"
     ],
     "dest": [
       "config"
