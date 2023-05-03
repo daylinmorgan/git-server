@@ -10,7 +10,8 @@
       "monolisa-nerdfont-patch",
       "yartsu",
       "task.mk",
-      "viv"
+      "viv",
+      "logo"
     ],
     "dest": [
       "config"
