@@ -5,8 +5,8 @@ services:
     image: gitea/gitea:1.18.3
     container_name: gitea
     environment:
-      - USER_UID=1001
-      - USER_GID=1001
+      - USER_UID=1002
+      - USER_GID=100
     restart: always
     volumes:
       - ./gitea:/data
@@ -22,11 +22,6 @@ services:
     image: caddy:2.5.2-alpine
     restart: unless-stopped
     container_name: caddy
-    # ports:
-      # - "80:80"
-      # - "443:443"
-      # - "443:443/udp"
-      # - "127.0.0.1:8080:8080"
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data

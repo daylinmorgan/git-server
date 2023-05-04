@@ -3,5 +3,5 @@ git.dayl.in {
 }
 
 f1.dayl.in {
-	reverse_proxy 127.0.0.1:8000
+  reverse_proxy 127.0.0.1:8000
 }
