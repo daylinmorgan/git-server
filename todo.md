@@ -6,4 +6,4 @@
 
 ## Style
 
-- [ ] improve custom css for some light-on light textboxes
+- [x] switch to official catppuccin flavor of gitea styling
