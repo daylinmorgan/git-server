@@ -14,30 +14,22 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - "127.0.0.1:3000:3000"
-      - "127.0.0.0:222:22"
-      - "127.0.0.1:2222:22"
-
-  caddy:
-    image: caddy:2.5.2-alpine
-    restart: unless-stopped
-    container_name: caddy
-    volumes:
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
-    network_mode: host
+      - "2222:22"
+    networks:
+      - caddy
 
   soft-serve:
-    image: charmcli/soft-serve:v0.4.4
-    restart: unless-stopped
-    container_name: soft-serve
+    image: charmcli/soft-serve:v0.5.2
     volumes:
       - ./soft/data:/soft-serve
     ports:
       - 23231:23231
+      - 23232:23232
+      - 23233:23233
+      - 9418:9418
+    restart: unless-stopped
 
-volumes:
-  caddy_data:
+networks:
+  caddy:
     external: true
-  caddy_config:
+
