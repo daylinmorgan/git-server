@@ -11,8 +11,8 @@ def get_config():
 
 
 def get_name(config, repo):
-    name = repo.name.replace(".git", "")
-    dest = Path(config["paths"]["dest"]) / name
+    name = repo.name.replace(".git","")
+    dest = Path(config["paths"]["dest"]) / repo.name
     return name, dest
 
 
