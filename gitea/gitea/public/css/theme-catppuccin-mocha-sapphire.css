@@ -112,7 +112,7 @@
   --color-red-badge-bg: #11111b;
   --color-red-badge-hover-bg: #f17497;
   --color-green-badge: #a6e3a1;
-  --color-green-badge-bg: #11111b;
+  --color-green-badge-bg: #a6e3a1;
   --color-green-badge-hover-bg: #93dd8d;
   --color-yellow-badge: #f9e2af;
   --color-yellow-badge-bg: #11111b;
@@ -139,6 +139,8 @@
   --color-input-toggle-background: #313244;
   --color-input-border: #45475a;
   --color-input-border-hover: #585b70;
+  --color-nav-bg: #181825;
+  --color-nav-hover-bg: #313244;
   --color-navbar: #181825;
   --color-navbar-transparent: rgba(17, 17, 27, 0);
   --color-light: rgba(88, 91, 112, 0.3);
@@ -170,8 +172,12 @@
   --color-caret: var(--color-text);
   --color-reaction-bg: rgba(205, 214, 244, 0.07);
   --color-reaction-active-bg: var(--color-primary-alpha-40);
-  --color-header-bar: #181825;
-  --color-label-active-bg: #585b70;
+  --color-header-wrapper: #181825;
+  --color-header-wrapper-transparent: rgba(24, 24, 37, 0);
+  --color-label-text: #11111b;
+  --color-label-bg: #74c7ec;
+  --color-label-hover-bg: #59bce8;
+  --color-label-active-bg: #67c2ea;
   --color-accent: var(--color-primary-light-1);
   --color-small-accent: var(--color-primary-light-5);
   --color-active-line: #45475a;
@@ -224,10 +230,10 @@
   color: #11111b;
 }
 
-.ui.sha.isSigned.isVerified:hover .shortsha {
+.ui.sha.isSigned.isVerified .shortsha {
   color: #11111b;
 }
-.ui.sha.isSigned.isVerified:hover svg.gitea-lock {
+.ui.sha.isSigned.isVerified svg.gitea-lock {
   fill: #11111b;
 }
 
@@ -697,4 +703,111 @@
 .CodeMirror.cm-s-default .cm-error,
 .CodeMirror.cm-s-paper .cm-error {
   color: #f38ba8;
+}
+
+.monaco-editor .selected-text {
+  background-color: #313244 !important;
+}
+.monaco-editor .margin-view-overlays .line-numbers {
+  color: #a6adc8 !important;
+}
+.monaco-editor .line-numbers.active-line-number {
+  color: #74c7ec !important;
+}
+.monaco-editor .view-overlays .current-line,
+.monaco-editor .margin-view-overlays .current-line-margin {
+  background-color: #2a2b3c !important;
+}
+.monaco-editor .mtk1 {
+  color: #cdd6f4 !important;
+}
+.monaco-editor .mtk2 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk3 {
+  color: #fab387 !important;
+}
+.monaco-editor .mtk4 {
+  color: #94e2d5 !important;
+}
+.monaco-editor .mtk5 {
+  color: #cdd6f4 !important;
+}
+.monaco-editor .mtk6 {
+  color: #cba6f7 !important;
+}
+.monaco-editor .mtk7 {
+  color: #fab387 !important;
+}
+.monaco-editor .mtk8 {
+  color: #9399b2 !important;
+}
+.monaco-editor .mtk9 {
+  color: #cba6f7 !important;
+}
+.monaco-editor .mtk10 {
+  color: #a6adc8 !important;
+}
+.monaco-editor .mtk11 {
+  color: #94e2d5 !important;
+}
+.monaco-editor .mtk12 {
+  color: #94e2d5 !important;
+}
+.monaco-editor .mtk13 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk14 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk15 {
+  color: #cba6f7 !important;
+}
+.monaco-editor .mtk16 {
+  color: #9399b2 !important;
+}
+.monaco-editor .mtk17 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk18 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk19 {
+  color: #94e2d5 !important;
+}
+.monaco-editor .mtk20 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk21 {
+  color: #a6e3a1 !important;
+}
+.monaco-editor .mtk22 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk23 {
+  color: #89b4fa !important;
+}
+.monaco-editor .mtk24 {
+  color: #fab387 !important;
+}
+.monaco-editor .mtk25 {
+  color: #f5c2e7 !important;
+}
+.monaco-editor .bracket-highlighting-0 {
+  color: #e4a9c6 !important;
+}
+.monaco-editor .bracket-highlighting-1 {
+  color: #e8c1b3 !important;
+}
+.monaco-editor .bracket-highlighting-2 {
+  color: #e7ddcb !important;
+}
+.monaco-editor .bracket-highlighting-3 {
+  color: #b6dec2 !important;
+}
+.monaco-editor .bracket-highlighting-4 {
+  color: #a4c2f8 !important;
+}
+.monaco-editor .bracket-highlighting-5 {
+  color: #ccb9f6 !important;
 }
