@@ -11,7 +11,8 @@
       "yartsu",
       "task.mk",
       "viv",
-      "logo"
+      "logo",
+      "forge"
     ],
     "dest": [
       ".soft-serve"
