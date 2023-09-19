@@ -6,4 +6,5 @@ gitea/gitea/*
 !gitea/gitea/public/
 
 soft/*
-!soft/config/
+!soft/setup.nim
+!soft/repos.txt
