@@ -20,7 +20,8 @@ services:
 
   soft-serve:
     container_name: soft-serve
-    image: charmcli/soft-serve:v0.7.2
+    image: charmcli/soft-serve:v0.6.2
+    restart: unless-stopped
     volumes:
       - ./soft/data:/soft-serve
     ports:
@@ -28,7 +29,6 @@ services:
       - 23232:23232
       - 23233:23233
       - 9418:9418
-    restart: unless-stopped
 
 networks:
   caddy:
