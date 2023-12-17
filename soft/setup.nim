@@ -8,10 +8,9 @@ curl -L \
 ]#
 {.define: ssl.}
 import std/[
-  httpclient, json,
-  os, osproc,
-  options, sequtils,
-  strformat, strutils,
+  httpclient, json, os, osproc,
+  options, strformat, strutils,
+  sugar
 ]
 
 type
@@ -20,7 +19,7 @@ type
     description: string
     html_url: string
 
-template use(client: HttpClient, body: untyped) = 
+template use(client: HttpClient, body: untyped) =
   try:
     body
   finally:
@@ -85,9 +84,12 @@ when isMainModule:
   let
     ghRepos = getGhRepos()
     softRepos = getSoftRepos()
+    toBeMirrored = collect:
+      for repo in ghRepos:
+        if repo.name in reposList and
+          repo.name notin softRepos:
+          repo
 
-  let repos = ghRepos.filterIt(it.name in reposList)
-  let toBeMirrored: seq[Repo] = repos.filterIt(it.name notin softRepos)
   if toBeMirrored.len > 0:
     for repo in toBeMirrored:
       mirrorToSoft(repo, dryrun)
