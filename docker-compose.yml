@@ -1,15 +1,15 @@
 version: "3"
 
 services:
-  gitea:
-    image: gitea/gitea:1.21.0
-    container_name: gitea
+  forgejo:
+    image: codeberg.org/forgejo/forgejo:1.21.4-0
+    container_name: forgejo
     environment:
       - USER_UID=1002
       - USER_GID=100
     restart: always
     volumes:
-      - ./gitea:/data
+      - ./forgejo:/data
       - /home/git/.ssh/:/data/git/.ssh
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro

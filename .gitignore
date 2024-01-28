@@ -1,9 +1,10 @@
-gitea/*
-!gitea/gitea/
+gitea.bak/
+forgejo/*
+!forgejo/gitea/
+forgejo/gitea/*
+!forgejo/gitea/templates/
+!forgejo/gitea/public/
 
-gitea/gitea/*
-!gitea/gitea/templates/
-!gitea/gitea/public/
 
 soft/*
 !soft/setup.nim
