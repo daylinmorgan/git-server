@@ -5,7 +5,8 @@ services:
     image: codeberg.org/forgejo/forgejo:1.21.5-0
     container_name: forgejo
     environment:
-      - USER_UID=1002
+      # git user
+      - USER_UID=1001
       - USER_GID=100
     restart: always
     volumes:
