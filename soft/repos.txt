@@ -10,3 +10,5 @@ logo
 forge
 advent-of-code-2023
 nnl
+hwylterm
+tsm
