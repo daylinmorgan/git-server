@@ -1,6 +1,6 @@
 services:
   forgejo:
-    image: codeberg.org/forgejo/forgejo:8.0.3
+    image: codeberg.org/forgejo/forgejo:9.0.0
     container_name: forgejo
     environment:
       # git user
