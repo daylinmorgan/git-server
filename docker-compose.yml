@@ -13,9 +13,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
+      - "3000:3000"
       - "2222:22"
-    networks:
-      - caddy
 
   soft-serve:
     container_name: soft-serve
@@ -28,8 +27,4 @@ services:
       - 23232:23232
       - 23233:23233
       - 9418:9418
-
-networks:
-  caddy:
-    external: true
 
