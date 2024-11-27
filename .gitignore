@@ -7,5 +7,5 @@ forgejo/gitea/*
 
 
 soft/*
-!soft/setup.nim
+!soft/add-mirrors
 !soft/repos.txt

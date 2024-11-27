@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+
+import argparse
+import json
+import os
+import shlex
+import subprocess
+import sys
+import urllib.request
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, List
+
+
+@dataclass(frozen=True)
+class Repo:
+    name: str
+    html_url: str
+    description: str = ""
+
+    @classmethod
+    def from_response(cls, data: Dict[str, str]) -> "Repo":
+        return cls(
+            **{
+                k: v
+                for k, v in data.items()
+                if k in cls.__dataclass_fields__.keys() and v is not None
+            }
+        )
+
+
+def get_soft_repos() -> List[str]:
+    return (
+        subprocess.check_output(
+            shlex.split("ssh -p 23231 localhost repos list"), text=True
+        )
+        .strip()
+        .splitlines()
+    )
+
+
+def get_link_url(links: str) -> str:
+    """parse a link from a github api header response
+
+    will look like this:
+    '<https://api.github.com/user/47667941/repos?per_page=100&page=2>; rel="next" <https://api.github.com/user/47667941/repos?per_page=100&page=2>; rel="last"'
+    """
+    return links.split(",")[0].split(";")[0].strip("<>")
+
+
+def get_gh_repos() -> List[Repo]:
+    """get a list of all repos on GH with pagination"""
+    token = os.getenv("GITHUB_TOKEN")
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    if token != "":
+        headers["Authorization"] = f"Bearer {token}"
+    url = "https://api.github.com/user/47667941/repos?per_page=100"
+    pages_left = True
+    data = []
+    while pages_left:
+        req = urllib.request.Request(url, headers=headers)
+        response = urllib.request.urlopen(req)
+        data.extend(json.loads(response.read()))
+        pages_left = 'rel="next"' in (link_header := response.getheader("link"))
+        if pages_left:
+            url = get_link_url(link_header)
+
+    return [Repo.from_response(repo_data) for repo_data in data]
+
+
+def mirror_repo(repo: Repo, dry_run=False) -> None:
+    print(f"mirroring: {repo.name}")
+    cmd = [
+        *shlex.split("ssh -p 23231 localhost repos import --mirror"),
+
+        repo.name,
+        repo.html_url,
+    ]
+    if repo.description != "":
+        cmd.append("-d")
+        cmd.append(f"'{repo.description}'")
+    if dry_run:
+        print(" ".join(str(s) for s in cmd))
+    else:
+        subprocess.check_output(cmd)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-n",
+        "--dry-run",
+        help="set dry-run (don't actually mirror with soft-serve yet)",
+        action="store_true",
+    )
+    args = parser.parse_args()
+    dry_run = False
+    repos = (Path(__file__).parent / "repos.txt").read_text().splitlines()
+    gh_repos = get_gh_repos()
+    soft_repos = get_soft_repos()
+
+    non_existent = {
+        repo for repo in repos if repo not in (repo.name for repo in gh_repos)
+    }
+    if non_existent:
+        sys.exit("some repos don't exist on github: " + ";".join(non_existent))
+
+    to_mirror = {
+        repo for repo in gh_repos if repo.name in repos and repo.name not in soft_repos
+    }
+    if not to_mirror:
+        sys.exit("no repos need to be mirrored")
+
+    print(f"mirroring {len(to_mirror)} repo(s)")
+    for repo in to_mirror:
+        mirror_repo(repo, dry_run=args.dry_run)
