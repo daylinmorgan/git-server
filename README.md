@@ -12,16 +12,6 @@ to afford myself both a TUI and a browser.
 
 ## Setup
 
-To keep `soft-serve` version up to date
-add the following lines to `sudo crontab`.
-
-```
-# update repos
-0 * * * * make -C /home/daylin/git soft-repos
-# update container so home page is semi-accurate
-0 2 * * * make -C /home/daylin/git update-soft-serve
-```
-
 Notable changes to `app.ini` for `gitea`.
 
 ```dosini
@@ -49,6 +39,9 @@ THEMES        = arc-green
 ENABLE_OPENID_SIGNIN = false
 ENABLE_OPENID_SIGNUP = false
 ```
+
+All repos on the `soft-serve` instance are handled using it's mirror feature.
+A list of repos are maintained at `soft/repos.txt` and checked/added by running `soft/add-mirrors`.
 
 ## Where is this repo, actually?
 
