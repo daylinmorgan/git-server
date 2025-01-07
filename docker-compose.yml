@@ -18,7 +18,7 @@ services:
 
   soft-serve:
     container_name: soft-serve
-    image: charmcli/soft-serve:v0.7.4
+    image: charmcli/soft-serve:v0.8.2
     restart: unless-stopped
     volumes:
       - ./soft/data:/soft-serve
