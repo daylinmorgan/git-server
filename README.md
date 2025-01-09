@@ -1,18 +1,17 @@
 # Git Server
 
-This configuration utilizes `docker`, `gitea`, `caddy`, and `soft serve` for my own self-hosted git instance.
+This configuration utilizes `docker`, `forgejo`, and `soft serve` for my own self-hosted git instance.
 
-Attracted by the feature set of [`gitea`](https://gitea.io)
-and the charm (pun intended) of [`soft serve`](https://github.com/charmbracelet/soft-serve),
+Attracted by the feature set of ~~[`gitea`](https://gitea.io)~~[`forgejo`](https://forgejo.org/) and the charm (pun intended) of [`soft serve`](https://github.com/charmbracelet/soft-serve),
 I was unable to choose how to host my own git instance, so I didn't.
 
 Combining the best of both worlds,
-I manually update repos served by `soft serve` with a simple cron job
+I manually update any mirrored repos served by `soft serve` with a python script
 to afford myself both a TUI and a browser.
 
 ## Setup
 
-Notable changes to `app.ini` for `gitea`.
+Notable changes to `app.ini` for ~~`gitea`~~`forgejo`.
 
 ```dosini
 APP_NAME = Daylin's Git Server
@@ -45,9 +44,10 @@ A list of repos are maintained at `soft/repos.txt` and checked/added by running 
 
 ## Where is this repo, actually?
 
-github < mirror > gitea < mirror > soft-serve
+github < mirror > forgejo < mirror > soft-serve
 
-This repo is hosted on github but mirrored to my self-hosted [`gitea`](https://gitea.io/en-us/) instance.
+This repo is hosted on github but mirrored to my self-hosted `forgejo`
+instance.
 Once there it will be "mirrored" to an instance of [`soft-serve`](https://github.com/charmbracelet/soft-serve).
 
 
