@@ -74,14 +74,14 @@ def get_gh_repos() -> List[Repo]:
 def mirror_repo(repo: Repo, dry_run=False) -> None:
     print(f"mirroring: {repo.name}")
     cmd = [
-        *shlex.split("ssh -p 23231 localhost repos import --mirror"),
-
+        *shlex.split("ssh -p 23231 localhost -- repos import"),
         repo.name,
         repo.html_url,
+        "--mirror",
     ]
     if repo.description != "":
         cmd.append("-d")
-        cmd.append(f"'{repo.description}'")
+        cmd.append(shlex.quote(repo.description))
     if dry_run:
         print(" ".join(str(s) for s in cmd))
     else:
