@@ -18,7 +18,8 @@ services:
 
   soft-serve:
     container_name: soft-serve
-    image: charmcli/soft-serve:v0.8.2
+    # v0.8.2 broke mirroring
+    image: charmcli/soft-serve:v0.8.1
     restart: unless-stopped
     volumes:
       - ./soft/data:/soft-serve
